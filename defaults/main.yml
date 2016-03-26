@@ -1,0 +1,30 @@
+---
+
+# The specific package name used to install neovim
+neovim_name: neovim
+neovim_ppa: ppa:neovim-ppa/unstable
+
+# The base directory relative to which user specific configuration files should be stored
+config_dir: "{{ ansible_env.XDG_CONFIG_HOME | default(default_xdg_config_home) }}"
+
+neovim_config_dir: "{{ config_dir }}/nvim"
+
+# Whether or not to install or remove neovim
+# choices: [ present, absent, latest ]
+install_state: present
+
+# Whether or not to configure or remove configuration
+# choices: [ present, absent ]
+configure_state: present
+
+pip2_name: pip
+pip3_name: pip3
+
+# common required packages for python support
+python_required_packages:
+    - software-properties-common
+    - python-dev
+    - python-pip
+    - python3-dev
+    - python3-pip
+
