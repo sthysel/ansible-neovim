@@ -14,11 +14,24 @@
     - install
     - update
 
+# Install ycm dependencies
+- block:
+  - name: Install you complete me dependencies
+    apt: name={{ item }} state=installed
+    with_items: 
+      - "{{ ycm_packages }}"
+
+  become: true
+  become_user: root
+  tags:
+    - bootstrap
+    - install
+    - update
+
 # Install neovim
 - block: 
     - name: Add neovim ppa 
       apt_repository: repo="{{ neovim_ppa }}" state=present
-      # become: yes
       when: ansible_os_family == "Debian"
 
     - name: Install neovim from ppa
