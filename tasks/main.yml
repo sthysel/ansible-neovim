@@ -37,6 +37,14 @@
     - name: Install neovim from ppa
       apt: name="{{ neovim_name }}" state="{{ install_state }}"
 
+    - name: use nvim for vi
+      alternatives: name=vi path=/usr/bin/nvim
+    - name: use nvim for vim
+      alternatives: name=vim path=/usr/bin/nvim
+    - name: use nvim for editor
+      alternatives: name=editor path=/usr/bin/nvim
+
+
   become: true
   become_user: root
 
